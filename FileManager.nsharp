@@ -1,0 +1,98 @@
+nsharp
+// Import necessary modules
+import (link unavailable);
+import System.Console;
+
+// Define the File Manager class
+class FileManager {
+  // Constructor
+  init() {
+    // Initialize the file system
+    fs = new FileSystem();
+  }
+
+  // Method to list files and directories
+  listFiles(dir) {
+    // Check if the directory exists
+    if (!fs.exists(dir)) {
+      Console.WriteLine("Directory not found.");
+      return;
+    }
+
+    // List files and directories
+    files = fs.listFiles(dir);
+    foreach (file in files) {
+      Console.WriteLine(file);
+    }
+  }
+
+  // Method to create a new directory
+  createDirectory(dir) {
+    // Check if the directory already exists
+    if (fs.exists(dir)) {
+      Console.WriteLine("Directory already exists.");
+      return;
+    }
+
+    // Create the new directory
+    fs.createDirectory(dir);
+    Console.WriteLine("Directory created successfully.");
+  }
+
+  // Method to delete a file or directory
+  deleteFile(file) {
+    // Check if the file or directory exists
+    if (!fs.exists(file)) {
+      Console.WriteLine("File or directory not found.");
+      return;
+    }
+
+    // Delete the file or directory
+    fs.deleteFile(file);
+    Console.WriteLine("File or directory deleted successfully.");
+  }
+}
+
+// Main function
+main() {
+  // Create a new File Manager instance
+  fileManager = new FileManager();
+
+  // Display the command-line interface
+  Console.WriteLine("File Manager");
+  Console.WriteLine("-------------");
+  Console.WriteLine("1. List files and directories");
+  Console.WriteLine("2. Create a new directory");
+  Console.WriteLine("3. Delete a file or directory");
+  Console.WriteLine("4. Exit");
+
+  // Handle user input
+  while (true) {
+    Console.Write("Enter your choice: ");
+    choice = Console.ReadLine();
+
+    switch (choice) {
+      case "1":
+        Console.Write("Enter the directory path: ");
+        dir = Console.ReadLine();
+        fileManager.listFiles(dir);
+        break;
+      case "2":
+        Console.Write("Enter the new directory path: ");
+        dir = Console.ReadLine();
+        fileManager.createDirectory(dir);
+        break;
+      case "3":
+        Console.Write("Enter the file or directory path: ");
+        file = Console.ReadLine();
+        fileManager.deleteFile(file);
+        break;
+      case "4":
+        Console.WriteLine("Exiting...");
+        return;
+      default:
+        Console.WriteLine("Invalid choice. Please try again.");
+        break;
+    }
+  }
+}
